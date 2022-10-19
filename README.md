@@ -2,6 +2,11 @@
 
 Making my dream AO3 text-to-Notion pipeline 
 
+This project uses: 
+
+- Python 3.10 
+- Django 4.1
+
 ## What is this? 
 
 This is all [Simon's](https://twitter.com/simonw) fault, is what it is. 
