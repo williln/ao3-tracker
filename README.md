@@ -34,9 +34,29 @@ To help manage dependencies, this project uses:
 
 The summaries here are for basic "what/when" guideance. Please read `Justfile` or the  documentation for a specific package if more detail is needed.
 
+## just checkout-main
+Runs `git checkout main`. 
+
+## just coverage
+Runs `pytest` generating an HTML coverage report and opens it in your local browser.
+
+## just django-shell
+Same as above but with `python manage.py shell` added, so you can start trying Django things more easily.
+
+## just lint
+Runs `black .` to format the codebase. 
+
+## just {makemigrations or migrate}
+Runs the corresponding [Django command](https://docs.djangoproject.com/en/3.0/topics/migrations/) in the `web` container.
+
+Migrations are "_Django’s way of propagating changes you make to your models_", so these commands should be run then.
+
 ## just pip-compile
 Creates a `web` container, running `pip-compile` inside it. This creates a fresh `requirements.txt` based on `requirements.in`.
 This should be run after changes are made to the `requirements.in`(so, each time a package the project depends on is added, removed, or changed). Please see the `pip-tools` documentation for more detail on `pip-compile` and related tools.
+
+## just pull-main
+Runs `git pull origin main`.
 
 ## just rebuild
 Removes the `web` container, then rebuilds `web`.
@@ -45,23 +65,9 @@ This should be used after each `just pip-compile`, as the project dependencies s
 ## just shell
 Provides a bash prompt insided the `web` container. Useful for debugging and manual testing/investigation.
 
-## just django-shell
-Same as above but with `python manage.py shell` added, so you can start trying Django things more easily.
-
 ## just test
 Runs `pytest` and `interrogate` in the `web` container.  Please: write, run, and document your tests.
 
-## just coverage
-
-Runs `pytest` generating an HTML coverage report and opens it in your local browser.
-
-## just {makemigrations or migrate}
-Runs the corresponding [Django command](https://docs.djangoproject.com/en/3.0/topics/migrations/) in the `web` container.
-
-Migrations are "_Django’s way of propagating changes you make to your models_", so these commands should be run then.
-
-## just lint
-Runs `black .` to format the codebase. 
 
 # Can I help? 
 

@@ -13,6 +13,9 @@ requirements := justfile_directory() + '/requirements.txt'
 django-shell:
     docker-compose run --rm web python manage.py shell
 
+checkout-main:
+    git checkout main
+
 coverage:
     docker-compose run --rm web pytest --cov=. --cov-report=html
     open htmlcov/index.html
@@ -28,6 +31,9 @@ migrate:
 
 pip-compile:
     docker-compose run --rm web /venv/bin/pip-compile requirements.in > requirements.txt
+
+pull-main:
+    git pull origin main
 
 rebuild:
     docker-compose rm -f web
