@@ -8,9 +8,9 @@ This is all [Simon's](https://twitter.com/simonw) fault, is what it is.
 
 I have a fear of coding in public! Coding for work? No problem. Constructive feedback on PRs? Bring it on. But personal projects? Eh, that seems pretty scary. 
 
-But I also read a *lot* of fanfiction, and I have yet to cobble together a way to keep track of the things I am reading, the things I want to read, and the things I have read. [AO3]() is the platform I read most works on, but it doesn't have an app or an API, and its built-in tools for keeping track of all this stuff don't meet my needs. 
+But I also read a *lot* of fanfiction, and I have yet to cobble together a way to keep track of the things I am reading, the things I want to read, and the things I have read. [AO3](https://archiveofourown.org/) is the platform I read most works on, but it doesn't have an app or an API, and its built-in tools for keeping track of all this stuff don't meet my needs. 
 
-So I'm going to build something. Simon gave an [awesome talk at DjangoCon US 2022 about personal projects](https://github.com/simonw/djangocon-2022-productivity) that really inspired me to get over myself and work in public. 
+So I'm going to build something. Simon gave an [awesome talk at DjangoCon US 2022 about personal projects](https://github.com/simonw/djangocon-2022-productivity) that really inspired me to get over myself, work in public, and build the thing I want. 
 
 ## Can I help? 
 
