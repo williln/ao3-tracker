@@ -4,6 +4,8 @@ from AO3.utils import workid_from_url
 
 from django.conf import settings
 
+from typing import List
+
 from works.models import Work, Author
 
 
@@ -14,7 +16,7 @@ def get_ao3_session() -> Session:
     return Session(settings.AO3_USERNAME, settings.AO3_PASSWORD)
 
 
-def get_bookmarks(session) -> list:
+def get_bookmarks(session: Session) -> list:
     """
     Returns a list of ao3 Work objects.
 
@@ -31,7 +33,7 @@ def get_bookmarks(session) -> list:
     return session.get_bookmarks()
 
 
-def get_work(work_url) -> AO3_Work:
+def get_work(work_url: str) -> AO3_Work:
     """
     Returns an AO3 Work object
 
@@ -51,7 +53,7 @@ def get_work(work_url) -> AO3_Work:
     return work
 
 
-def import_bookmarks():
+def import_bookmarks() -> List[AO3_Work]:
     """
     Retrieves all AO3 bookmarks, and loads them into the DB
     """
