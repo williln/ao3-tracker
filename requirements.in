@@ -11,6 +11,9 @@ gevent
 gunicorn
 psycopg2
 
+# AO3
+ao3_api
+
 # Testing
 black
 dirty-equals

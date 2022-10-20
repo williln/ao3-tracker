@@ -178,3 +178,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "deployed_static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# AO3 Settings
+AO3_USERNAME = env("AO3_USERNAME")
+AO3_PASSWORD = env("AO3_PASSWORD")
