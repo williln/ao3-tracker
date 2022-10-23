@@ -88,6 +88,8 @@ iniconfig==1.1.1
     # via pytest
 ipython==8.5.0
     # via -r requirements.in
+isort==5.10.1
+    # via -r requirements.in
 jedi==0.18.1
     # via ipython
 lxml==4.9.1
@@ -161,7 +163,11 @@ pytz==2022.5
     #   dirty-equals
     #   djangorestframework
 requests==2.28.1
-    # via ao3-api
+    # via
+    #   ao3-api
+    #   responses
+responses==0.22.0
+    # via -r requirements.in
 six==1.16.0
     # via asttokens
 soupsieve==2.3.2.post1
@@ -170,6 +176,8 @@ sqlparse==0.4.3
     # via django
 stack-data==0.5.1
     # via ipython
+toml==0.10.2
+    # via responses
 tomli==2.0.1
     # via
     #   black
@@ -181,10 +189,14 @@ traitlets==5.5.0
     # via
     #   ipython
     #   matplotlib-inline
+types-toml==0.10.8
+    # via responses
 typing-extensions==4.4.0
     # via dirty-equals
 urllib3==1.26.12
-    # via requests
+    # via
+    #   requests
+    #   responses
 wcwidth==0.2.5
     # via prompt-toolkit
 wheel==0.37.1

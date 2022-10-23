@@ -19,11 +19,13 @@ black
 dirty-equals
 django-test-plus
 ipython
+isort
 model-bakery
 pytest
 pytest-cov
 pytest-django
 pytest-xdist
+responses
 whitenoise
 
 # Packaging
