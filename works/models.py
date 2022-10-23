@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
 from django_extensions.db.models import TimeStampedModel
 
 
@@ -36,8 +35,9 @@ class Work(TimeStampedModel):
     complete = models.BooleanField(default=False)
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.TBR)
     word_count = models.PositiveIntegerField(default=0)
-    posted_date = models.DateTimeField(null=True)
-    last_updated_date = models.DateTimeField(null=True)
+    date_published = models.DateTimeField(null=True)
+    date_updated = models.DateTimeField(null=True)
+    metadata = models.JSONField(default={})
 
     def __str__(self):
         return f"{self.title} by {self.author.username}"
