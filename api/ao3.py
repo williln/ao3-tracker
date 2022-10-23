@@ -1,12 +1,11 @@
+from typing import List
+
 from AO3 import Session
 from AO3 import Work as AO3_Work
 from AO3.utils import workid_from_url
-
 from django.conf import settings
 
-from typing import List
-
-from works.models import Work, Author
+from works.models import Author, Work
 
 
 def get_ao3_session() -> Session:
@@ -60,7 +59,11 @@ def import_bookmarks() -> List[AO3_Work]:
     session = get_ao3_session()
     bookmarks = get_bookmarks(session)
 
+    counter = 0
+
     for bookmark in bookmarks:
+        if counter > 1:
+            break
         ao3_work = get_work(bookmark.url)
         ao3_author = ao3_work.authors[0]
 
@@ -74,10 +77,14 @@ def import_bookmarks() -> List[AO3_Work]:
                 "platform_id": ao3_work.id,
                 "author": author,
                 "title": ao3_work.title,
-                "summary": ao3_work.summmary,
+                "summary": ao3_work.summary,
                 "complete": ao3_work.complete,
                 "word_count": ao3_work.words,
                 "date_published": ao3_work.date_published,
                 "date_updated": ao3_work.date_edited,
+                "metdata": ao3_work.metadata
             },
         )
+        counter += 1
+
+    print(f"{counter} works imported")
