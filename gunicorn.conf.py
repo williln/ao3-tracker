@@ -1,8 +1,8 @@
 # vim: ft=python
 # pylint: disable=missing-docstring, line-too-long, invalid-name
 import os
-from psycogreen.gevent import patch_psycopg  # use this if you use gevent workers
 
+from psycogreen.gevent import patch_psycopg  # use this if you use gevent workers
 
 BASE_DIR = os.environ["H"] if os.environ.get("H", None) else "/code"
 

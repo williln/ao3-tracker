@@ -11,16 +11,21 @@ gevent
 gunicorn
 psycopg2
 
+# AO3
+ao3_api
+
 # Testing
 black
 dirty-equals
 django-test-plus
 ipython
+isort
 model-bakery
 pytest
 pytest-cov
 pytest-django
 pytest-xdist
+responses
 whitenoise
 
 # Packaging
