@@ -10,16 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import environs
 import logging
 import logging.handlers
 import os
 import sys
-
-from django.core.exceptions import ImproperlyConfigured
-
 from pathlib import Path
 
+import environs
+from django.core.exceptions import ImproperlyConfigured
 
 env = environs.Env()
 
