@@ -72,6 +72,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if DEBUG:
+    # These are necessary to turn on Whitenoise which will serve our static
+    # files while doing local development
+    MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+
 ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
@@ -95,13 +102,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
 
 try:
     DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
@@ -163,14 +163,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-
-# Additional directories from where we should collect static files from
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
-# This is the directory where all of the collected static files are put
-# after running collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, "deployed_static")
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
