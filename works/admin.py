@@ -27,7 +27,7 @@ class WorkAdmin(WordCountMixin, admin.ModelAdmin):
     list_display = ("title", "author", "complete", "status", "words")
     list_filter = ("status", "complete")
     search_fields = ("author__username", "title")
-    readonly_fields = ("url", "platform_id", "author", "title", "summary", "complete", "words", "date_published", "date_updated", "metadata")
+    readonly_fields = ("url", "platform_id", "author", "title", "summary", "complete", "word_count", "date_published", "date_updated", "metadata")
 
 
 admin.site.register(Author, AuthorAdmin)
