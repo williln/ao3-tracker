@@ -7,6 +7,6 @@ assignees: ''
 
 ---
 
-# Add a new fic 
+### >>new-fic<<
 
 link: [LINK]
