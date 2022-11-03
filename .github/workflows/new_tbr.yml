@@ -37,7 +37,7 @@ jobs:
       # See the link
       - name: From JSON
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
-        run: echo "${new-fic}"
+        run: echo "${link}"
 
       # Comment some nonsense on the issue
       - name: Comment on issue

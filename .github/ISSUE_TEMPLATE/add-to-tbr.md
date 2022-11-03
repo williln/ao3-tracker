@@ -7,6 +7,6 @@ assignees: ''
 
 ---
 
-### >>new-fic<<
+### >>link<<
 
-link: [LINK]
+[LINK]
