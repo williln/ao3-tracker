@@ -57,7 +57,7 @@ jobs:
       - name: Process link
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
         run: |-
-          touch fics/new-fic.md
+          cp fics/new.template new-fic.md
           python add_to_tbr.py --link ${link}
           cat fics/new-fic.md
 
