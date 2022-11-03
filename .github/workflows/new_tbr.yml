@@ -27,7 +27,7 @@ jobs:
       # Show the parsed JSON
       - name: Show parsed data JSON
         run: |
-          echo "${{ steps.parse.outputs.payload["new-fic"] }}"
+          echo "${{ steps.parse.outputs.payload['new-fic'] }}"
 
       # Save the link from the parsed issue as an output variable
       - name: Save parsed issue output
