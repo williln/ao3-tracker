@@ -57,10 +57,10 @@ jobs:
       - name: Process link
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
         run: |-
-          cp fics/new.template new-fic.md
           python add_to_tbr.py --link ${link}
           cat fics/new-fic.md
 
+      # Commit the file changes and push to main
       - name: Commit and push if README changed
         run: |-
           git diff
