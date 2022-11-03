@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Get issue number
         id: get_issue_number
-        run: echo "issue_number=${{context.issue.number}}" >> $GITHUB_OUTPUT
+        run: echo "issue_number=${{github.event.issue.id}}" >> $GITHUB_OUTPUT
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
