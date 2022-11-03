@@ -27,7 +27,7 @@ jobs:
           label_marker_end: '<<'
       - name: Show parsed data JSON
         run: |
-          echo "${{ steps.parse.outputs.payload"
+          echo "${{ steps.parse.outputs.payload  }}"
       - name: Get issue body
         id: get_issue_body
         uses: actions/some-action@v1
