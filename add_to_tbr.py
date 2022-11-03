@@ -16,7 +16,7 @@ if __name__ == "__main__":
         # First get rid of the extraneous arguments
         try:
             sys.argv.remove("--link")
-            sys.argv.remove("scripts/add_to_tbr.py")
+            sys.argv.remove("add_to_tbr.py")
         except Exception:
             pass
 
