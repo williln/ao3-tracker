@@ -52,6 +52,6 @@ jobs:
       - name: Close issue
         uses: peter-evans/close-issue@v2
         with:
-          issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
+          # issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
           labels: |
             tbr-done
