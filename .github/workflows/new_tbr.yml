@@ -49,9 +49,9 @@ jobs:
       # https://github.com/marketplace/actions/close-issue
       - name: See issue number
         run: echo ${{needs.create-issue-comment.outputs.issue_number}}
-      # - name: Close issue
-      #   uses: peter-evans/close-issue@v2
-      #   with:
-      #     issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
-      #     labels: |
-      #       tbr-done
+      - name: Close issue
+        uses: peter-evans/close-issue@v2
+        with:
+          issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
+          labels: |
+            tbr-done
