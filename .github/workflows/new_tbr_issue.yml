@@ -1,4 +1,4 @@
-name: Process new to-be-read items
+name: Process new to-be-read issues
 
 on:
   issues:
@@ -58,19 +58,11 @@ jobs:
           python add_to_tbr.py --link ${link}
           cat fics/new-fic.md
 
-      # Commit the file changes and push to main
-      # - name: Commit and push if README changed
-      #   run: |-
-      #     git diff
-      #     git config --global user.email "tbr-bot@example.com"
-      #     git config --global user.name "TBR-bot"
-      #     git diff --quiet || (git add --all && git commit -m "📚 New fic added!")
-      #     git push
-      # Generate a nonsense file
+      # Generate a file with the link
       - name: Commit a random file
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
         run: |
-          echo "${link}" > generated.txt
+          echo "${link}" > new_link.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
@@ -100,10 +92,9 @@ jobs:
       - name: Prove we got the link
         run: echo "${{ needs.create-issue-comment.outputs.issue_json }}"
 
-  # FIXME: Comment this back in when done testing
-  #     # Close the issue
-  #     - name: Close issue
-  #       uses: peter-evans/close-issue@v2
-  #       with:
-  #         labels: |
-  #           tbr-done
+      # Close the issue
+      - name: Close issue
+        uses: peter-evans/close-issue@v2
+        with:
+          labels: |
+            tbr-done
