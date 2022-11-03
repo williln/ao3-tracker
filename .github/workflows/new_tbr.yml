@@ -9,9 +9,12 @@ jobs:
     # Only run this job if the issue has the label "tbr"
     if: ${{ github.event.label.name == 'tbr' }}
     runs-on: ubuntu-latest
+
+    # The output variables that get created
     outputs:
-      link: ${{ steps.get_comment_step.outputs.link }}
+      link: ${{ steps.save_issue_output.outputs.link }}
     steps:
+      # Parse the JSON from the issue body
       - name: Parse issue
         id: parse
         uses: peter-murray/issue-forms-body-parser@v2.0.0
@@ -20,13 +23,19 @@ jobs:
           separator: '###'
           label_marker_start: '>>'
           label_marker_end: '<<'
+
+      # Show the parsed JSON
       - name: Show parsed data JSON
         run: |
-          echo "${{ steps.parse.outputs.payload.new-fic.link }}"
+          echo "${{ steps.parse.outputs.payload["new-fic"] }}"
+
+      # Save the link from the parsed issue as an output variable
       - name: Save parsed issue output
         id: save_issue_output
         run: |
           echo "link=${{ steps.parse.outputs.payload.link }}" >> $GITHUB_OUTPUT
+
+      # Comment some nonsense on the issue
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
@@ -39,13 +48,20 @@ jobs:
               repo: context.repo.repo,
               body: "All done! ✅"
             })
+
   close-issue:
     if: ${{ github.event.label.name == 'tbr' }}
     needs: create-issue-comment
     runs-on: ubuntu-latest
     steps:
-      - name: Close issue
-        uses: peter-evans/close-issue@v2
-        with:
-          labels: |
-            tbr-done
+      # Prove the link exists
+      - name: Prove we got the link
+        run: echo "${{ needs.create-issue-comment.outputs.link }}"
+
+  # FIXME: Comment this back in when done testing
+  #     # Close the issue
+  #     - name: Close issue
+  #       uses: peter-evans/close-issue@v2
+  #       with:
+  #         labels: |
+  #           tbr-done
