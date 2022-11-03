@@ -56,7 +56,17 @@ jobs:
 
       - name: Process link
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
-        run: python scripts/add_to_tbr.py --link ${link}
+        run: |-
+          python scripts/add_to_tbr.py --link ${link}
+          cat fics/new-fic.md
+
+      - name: Commit and push if README changed
+        run: |-
+          git diff
+          git config --global user.email "readme-bot@example.com"
+          git config --global user.name "README-bot"
+          git diff --quiet || (git add --all && git commit -m "📚 New fic added!")
+          git push
 
       # Comment some nonsense on the issue
       - name: Comment on issue

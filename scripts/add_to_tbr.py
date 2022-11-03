@@ -10,6 +10,7 @@ root = pathlib.Path(__file__).parent.resolve()
 index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.DOTALL)
 
 if __name__ == "__main__":
+    link = None
     # Get the link from the argument
     if "--link" in sys.argv:
         # First get rid of the extraneous arguments
@@ -22,18 +23,36 @@ if __name__ == "__main__":
         # FIXME: Named arguments?
         if sys.argv:
             print(f"This is the link: {sys.argv[0]}")
+            link = sys.argv[0]
 
-    # Pass it to the AO3 work getter
+    if link:
 
-    # AO3 work getter goes to AO3 and returns data as JSON
+        # Pass it to the AO3 work getter
 
-    # Parse the title and author into a markdown file
+        # AO3 work getter goes to AO3 and returns data as JSON
 
-    # Check fics/ to see if we have that markdown file
+        # Parse the title and author into a markdown file
 
-    # If yes, skip
+        # Check fics/ to see if we have that markdown file
 
-    # If no, create a new file using that slug
+        # If yes, skip
+
+        # If no, create a new file using that slug
+        index = ["<!-- index starts -->"]
+        index.append("---")
+        index.append(f"link: {link}")
+        index.append["---"]
+        index.append("# New Fic!")
+        index.append("<!-- index ends -->")
+
+        readme = root / "fics" / "new-fic.md"
+        print(readme)
+        index_txt = "\n".join(index).strip()
+        readme_contents = readme.open().read()
+        readme.open("w").write(index_re.sub(index_txt, readme_contents))
+        print("\n".join(index))
+    else:
+        print("No link!")
 
     # Cycle through the JSON and fill in the markdown file
 
@@ -43,7 +62,7 @@ if __name__ == "__main__":
     # for row in db["ficnotes"].rows_where(order_by="created_utc"):
     #     by_topic.setdefault(row["topic"], []).append(row)
 
-    # index = ["<!-- index starts -->"]
+
 
     # # Alphabetize the topics
     # topics = list(by_topic.keys())
