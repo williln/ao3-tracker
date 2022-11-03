@@ -68,7 +68,6 @@ jobs:
       #     git push
       # Generate a nonsense file
       - name: Commit a random file
-        uses: actions/checkout@v3
         run: |
           date > generated.txt
           git config user.name github-actions
