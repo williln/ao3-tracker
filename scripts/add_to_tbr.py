@@ -12,7 +12,16 @@ index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.
 if __name__ == "__main__":
     # Get the link from the argument
     if "--link" in sys.argv:
-        print(f"This is the link: {sys.argv[:-1]}")
+        # First get rid of the extraneous arguments
+        try:
+            sys.argv.remove("--link")
+            sys.argv.remove("scripts/add_to_tbr.py")
+        except Exception:
+            pass
+
+        # FIXME: Named arguments?
+        if sys.arg:
+            print(f"This is the link: {sys.argv[0]}")
 
     # Pass it to the AO3 work getter
 
