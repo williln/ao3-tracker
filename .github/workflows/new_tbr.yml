@@ -68,6 +68,7 @@ jobs:
       #     git push
       # Generate a nonsense file
       - name: Commit a random file
+        env: ${{ fromJSON(steps.parse.outputs.payload) }}
         run: |
           ${link} > generated.txt
           git config user.name github-actions
