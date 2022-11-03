@@ -41,7 +41,7 @@ if __name__ == "__main__":
         index = ["<!-- index starts -->"]
         index.append("---")
         index.append(f"link: {link}")
-        index.append["---"]
+        index.append("---")
         index.append("# New Fic!")
         index.append("<!-- index ends -->")
 
