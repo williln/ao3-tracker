@@ -12,7 +12,7 @@ index_re = re.compile(r"<!\-\- index starts \-\->.*<!\-\- index ends \-\->", re.
 if __name__ == "__main__":
     # Get the link from the argument
     if "--link" in sys.argv:
-        print(f"This is the link: {sys.argv}[:-1")
+        print(f"This is the link: {sys.argv[:-1]}")
 
     # Pass it to the AO3 work getter
 
