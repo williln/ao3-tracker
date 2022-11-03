@@ -2,8 +2,7 @@ name: Process new to-be-read items
 
 on:
   issues:
-    types:
-      - labeled
+    types: [labeled, opened, edited, reopened]
 
 jobs:
   # get-issue-comment:
