@@ -15,7 +15,24 @@ jobs:
     # Only run this job if the issue has the label "tbr"
     if: ${{ github.event.label.name == 'tbr' }}
     runs-on: ubuntu-latest
+    needs: get-issue-data
     steps:
+      - name: Parse issue
+        id: parse
+        uses: peter-murray/issue-forms-body-parser@v2.0.0
+        with:
+          issue_id: ${{ github.event.issue.number }}
+          separator: '###'
+          label_marker_start: '>>'
+          label_marker_end: '<<'
+      - name: Show parsed data JSON
+        run: |
+          echo "${{ steps.parse.outputs.payload"
+      - name: Get issue body
+        id: get_issue_body
+        uses: actions/some-action@v1
+        with:
+          link: ${{steps.parser.outputs.link}}
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
