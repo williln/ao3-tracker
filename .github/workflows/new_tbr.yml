@@ -27,10 +27,6 @@ jobs:
       - name: Show parsed data JSON
         run: |
           echo "${{ steps.parse.outputs.payload  }}"
-      - name: Get issue body
-        id: get_issue_body
-        with:
-          link: ${{steps.parser.outputs.link}}
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
