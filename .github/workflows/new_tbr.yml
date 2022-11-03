@@ -5,16 +5,12 @@ on:
     types: [labeled, opened, edited, reopened]
 
 jobs:
-  prove:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Prove I work
-        run: echo "I am running"
-
   create-issue-comment:
     # Only run this job if the issue has the label "tbr"
     if: ${{ github.event.label.name == 'tbr' }}
     runs-on: ubuntu-latest
+    outputs:
+      link: ${{ steps.get_comment_step.outputs.link }}
     steps:
       - name: Parse issue
         id: parse
@@ -26,7 +22,12 @@ jobs:
           label_marker_end: '<<'
       - name: Show parsed data JSON
         run: |
-          echo "${{ steps.parse.outputs.payload  }}"
+          echo "${{ steps.parse.outputs.payload }}"
+          echo "${{ steps.parse.outputs.payload.link }}"
+      - name: Save parsed issue output
+        id: save_issue_output
+        run: |
+          echo "link=${{ steps.parse.outputs.payload.link }}" >> $GITHUB_OUTPUT
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
