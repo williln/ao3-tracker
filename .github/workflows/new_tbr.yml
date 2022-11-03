@@ -23,9 +23,13 @@ jobs:
     # Only run this job if the issue has the label "tbr"
     if: ${{ github.event.label.name == 'tbr' }}
     runs-on: ubuntu-latest
+    outputs:
+      issue_number: ${{ steps.create_comment.outputs.issue_number }}
     steps:
-      - name: Comment on issue.
+      - name: Comment on issue
+        id: create_comment
         uses: actions/github-script@v6
+        run: echo "issue_number=${{context.issue.number}}" >> $GITHUB_OUTPUT
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -35,11 +39,14 @@ jobs:
               repo: context.repo.repo,
               body: "All done! ✅"
             })
+  close-issue:
+    runs-on: ubuntu-latest
+    needs: create-issue-comment
       # https://github.com/marketplace/actions/close-issue
       - name: Close issue
         uses: peter-evans/close-issue@v2
         with:
-          issue-number: ${{ context.issue.number }}
+          issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
           labels: |
             tbr-done
 
