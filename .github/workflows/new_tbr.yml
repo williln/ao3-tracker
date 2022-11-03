@@ -12,7 +12,7 @@ jobs:
 
     # The output variables that get created
     outputs:
-      link: ${{ steps.save_issue_output.outputs.link }}
+      issue_json: ${{ steps.set-json.outputs.issue_json }}
     steps:
       # Parse the JSON from the issue body
       - name: Parse issue
@@ -27,13 +27,17 @@ jobs:
       # Show the parsed JSON
       - name: Show parsed data JSON
         run: |
-          echo "${{ steps.parse.outputs.payload['new-fic'] }}"
+          echo "${{ steps.parse.outputs.payload }}"
 
-      # Save the link from the parsed issue as an output variable
-      - name: Save parsed issue output
-        id: save_issue_output
-        run: |
-          echo "link=${{ steps.parse.outputs.payload.link }}" >> $GITHUB_OUTPUT
+      # Save the parsed JSON as output
+      - name: Set JSON
+        id: set-json
+        run: echo "issue_json=${{ steps.parse.outputs.payload }}" >> $GITHUB_OUTPUT
+
+      # See the link
+      - name: From JSON
+        env: ${{ fromJSON(steps.parse.outputs.payload) }}
+        run: echo "${new-fic}"
 
       # Comment some nonsense on the issue
       - name: Comment on issue
@@ -56,7 +60,7 @@ jobs:
     steps:
       # Prove the link exists
       - name: Prove we got the link
-        run: echo "${{ needs.create-issue-comment.outputs.link }}"
+        run: echo "${{ needs.create-issue-comment.outputs.issue_json }}"
 
   # FIXME: Comment this back in when done testing
   #     # Close the issue
