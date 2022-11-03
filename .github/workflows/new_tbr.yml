@@ -1,23 +1,29 @@
 name: Process new to-be-read items
 
 on:
-  issue_comment:
+  issues:
     types:
-      - created
+      - opened
 
 jobs:
-  get-issue-comment:
+  # get-issue-comment:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     comment_body: ${{ steps.get_comment_step.outputs.comment_body }}
+  #   steps:
+  #     - name: Get comment body
+  #       id: get_comment_step
+  #       run: echo "comment_body=${{github.event.comment.body}}" >> $GITHUB_OUTPUT
+  prove:
     runs-on: ubuntu-latest
-    outputs:
-      comment_body: ${{ steps.get_comment_step.outputs.comment_body }}
     steps:
-      - name: Get comment body
-        id: get_comment_step
-        run: echo "comment_body=${{github.event.comment.body}}" >> $GITHUB_OUTPUT
+      - name: Prove I work
+        run: echo "I am running"
 
   create-issue-comment:
+    # Only run this job if the issue has the label "tbr"
+    if: ${{ github.event.label.name == 'tbr' }}
     runs-on: ubuntu-latest
-    needs: get-issue-comment
     steps:
       - name: Comment on issue.
         uses: actions/github-script@v6
