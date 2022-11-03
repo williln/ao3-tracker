@@ -70,7 +70,7 @@ jobs:
       - name: Commit a random file
         env: ${{ fromJSON(steps.parse.outputs.payload) }}
         run: |
-          ${link} > generated.txt
+          echo "${link}" > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
