@@ -29,7 +29,6 @@ jobs:
           echo "${{ steps.parse.outputs.payload  }}"
       - name: Get issue body
         id: get_issue_body
-        uses: actions/some-action@v1
         with:
           link: ${{steps.parser.outputs.link}}
       - name: Comment on issue
