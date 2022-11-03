@@ -41,10 +41,8 @@ jobs:
 
       # Run the link through the Python script
       - name: Check out repo
-        uses: actions/checkout@v2
-        # We need full history to introspect created/updated:
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
@@ -61,13 +59,23 @@ jobs:
           cat fics/new-fic.md
 
       # Commit the file changes and push to main
-      - name: Commit and push if README changed
-        run: |-
-          git diff
-          git config --global user.email "readme-bot@example.com"
-          git config --global user.name "README-bot"
-          git diff --quiet || (git add --all && git commit -m "📚 New fic added!")
-          git push
+      # - name: Commit and push if README changed
+      #   run: |-
+      #     git diff
+      #     git config --global user.email "tbr-bot@example.com"
+      #     git config --global user.name "TBR-bot"
+      #     git diff --quiet || (git add --all && git commit -m "📚 New fic added!")
+      #     git push
+      # Generate a nonsense file
+      - name: Commit a random file
+        uses: actions/checkout@v3
+        - run: |
+            date > generated.txt
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "🙃 generated"
+            git push
 
       # Comment some nonsense on the issue
       - name: Comment on issue
