@@ -3,7 +3,7 @@ name: Process new to-be-read items
 on:
   issues:
     types:
-      - opened
+      - labeled
 
 jobs:
   # get-issue-comment:
