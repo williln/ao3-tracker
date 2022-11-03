@@ -26,10 +26,12 @@ jobs:
     outputs:
       issue_number: ${{ steps.create_comment.outputs.issue_number }}
     steps:
+      - name: Get issue number
+        id: get_issue_number
+        run: echo "issue_number=${{context.issue.number}}" >> $GITHUB_OUTPUT
       - name: Comment on issue
         id: create_comment
         uses: actions/github-script@v6
-        run: echo "issue_number=${{context.issue.number}}" >> $GITHUB_OUTPUT
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -44,10 +46,11 @@ jobs:
     needs: create-issue-comment
     steps:
       # https://github.com/marketplace/actions/close-issue
+      - name: See issue number
+        run: echo ${{needs.create-issue-comment.outputs.issue_number}}
       - name: Close issue
         uses: peter-evans/close-issue@v2
         with:
           issue-number: ${{needs.create-issue-comment.outputs.issue_number}}
           labels: |
             tbr-done
-
