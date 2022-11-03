@@ -20,7 +20,7 @@ if __name__ == "__main__":
             pass
 
         # FIXME: Named arguments?
-        if sys.arg:
+        if sys.argv:
             print(f"This is the link: {sys.argv[0]}")
 
     # Pass it to the AO3 work getter
