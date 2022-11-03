@@ -45,6 +45,7 @@ jobs:
             })
   close-issue:
     if: ${{ github.event.label.name == 'tbr' }}
+    needs: create-issue-comment
     runs-on: ubuntu-latest
     steps:
       - name: Close issue
