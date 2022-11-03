@@ -23,7 +23,7 @@ jobs:
       - name: Show parsed data JSON
         run: |
           echo "${{ steps.parse.outputs.payload }}"
-          echo "${{ steps.parse.outputs.payload["new-fic"]["link"] }}"
+          echo "${{ steps.parse.outputs.payload['new-fic']['link'] }}"
       - name: Save parsed issue output
         id: save_issue_output
         run: |
